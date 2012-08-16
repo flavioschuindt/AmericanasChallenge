@@ -18,9 +18,7 @@ else:
 	if len(unavailable) > 0:
 		print u'\nUnavailable product\n'
 	elif len(results) > 0 :
-    		print "\nOriginal: '"+results[0]+"'\n"
-    		for index,item in enumerate(results):
-    			results[index] = results[index][8:].replace(".","")
-        		results[index] = results[index].replace(",",".")
-   		print "\nFloat: "+str(map(float,results)[0])+"\n"
+		print "\nOriginal: '"+results[0]+"'\n"
+        price = challenge.get_float_price(results[0])
+        print "\nFloat: "+str(price)+"\n"
 

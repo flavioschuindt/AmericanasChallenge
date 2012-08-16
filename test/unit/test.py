@@ -30,6 +30,5 @@ class UnitTest(unittest.TestCase):
 		url = '''http://www.americanas.com.br/produto/7262040/chromalin-(120-caps)-+-brinde-ripped-extreme-yellow-caps-(20-caps'''
 		data = challenge.do_request(url)['status_code']
 		self.assertTrue(data == 301)
-	
 
-unittest.main()	
+unittest.main()
