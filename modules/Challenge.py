@@ -4,10 +4,10 @@ import requests
 import re
 from lxml import html
 class Challenge:
-	def do_request(self,url) :
+	def do_request(self,url,cookie=None) :
 		#Level 1 requires to pass the headers. Why?
 		header = {'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.77 Safari/537.1'}
-		response = requests.get(url,headers=header)
+		response = requests.get(url,headers=header,cookies=cookie)
 		status_and_response = {}
 		if (len(response.history) > 0):
 			#Moved to home or departament page
