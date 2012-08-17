@@ -5,7 +5,6 @@ import re
 from lxml import html
 class Challenge:
 	def do_request(self,url,headers=None,cookie=None) :
-		#Level 1 requires to pass the headers. Why?
 		response = requests.get(url,headers=headers,cookies=cookie)
 		status_and_response = {}
 		if (len(response.history) > 0):

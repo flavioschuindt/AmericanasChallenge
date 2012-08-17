@@ -30,17 +30,30 @@ class UnitTest(unittest.TestCase):
 		url = '''http://www.americanas.com.br/produto/7262040/chromalin-(120-caps)-+-brinde-ripped-extreme-yellow-caps-(20-caps'''
 		data = challenge.do_request(url)['status_code']
 		self.assertTrue(data == 301)
-	def test_get_content_without_send_headers_should_return_error(self):
+	def test_get_price_without_send_headers_should_return_error(self):
 		challenge = Challenge()
 		url = '''http://hughes.sieve.com.br:9090/level1/'''
 		data = challenge.do_request(url)['response']
 		results = data.xpath("//div/text()")
 		self.assertTrue(len(results) == 0)
-	def test_get_content_sending_headers_should_be_ok(self):
+	def test_get_price_sending_headers_should_be_ok(self):
 		challenge = Challenge()
 		url = '''http://hughes.sieve.com.br:9090/level1/'''
 		header = {'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.77 Safari/537.1'}
 		data = challenge.do_request(url,header)['response']
+		results = data.xpath("//div/text()")
+		self.assertTrue(len(results) > 0)
+	def test_get_price_without_cookie_should_return_error(self):
+		challenge = Challenge()
+		url = '''http://hughes.sieve.com.br:9090/level2/'''
+		data = challenge.do_request(url)['response']
+		results = data.xpath("//div/text()")
+		self.assertTrue(len(results) == 0)
+	def test_get_price_with_cookie_should_be_ok(self):
+		challenge = Challenge()
+		url = '''http://hughes.sieve.com.br:9090/level2/'''
+		cookie = dict(d53db4de415c4e858dc761595623a898='+')
+		data = challenge.do_request(url,None,cookie)['response']
 		results = data.xpath("//div/text()")
 		self.assertTrue(len(results) > 0)
 
